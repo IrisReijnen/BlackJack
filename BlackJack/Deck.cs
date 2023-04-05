@@ -8,19 +8,19 @@ namespace BlackJack
 {
     internal class Deck
     {
-        private int aantalKaarten = 52;
         private List<Card> cards;
 
         public Deck()
         {
-            string[] ranks = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king", "ace" };
             string[] suits = { "Harten", "Ruiten", "Klaveren", "Schoppen" };
+            string[] ranks = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king", "ace" };
+            
             cards = new List<Card>();
-            for (int i = 0; i < suits.Length; i++) 
+            foreach (string suit in suits)
             {
-                for (int j = 0; j < ranks.Length; j++)
+                foreach (string rank in ranks)
                 {
-
+                    cards.Add(new Card(rank, suit));
                 }
             }
         }
