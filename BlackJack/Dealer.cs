@@ -19,5 +19,11 @@ namespace BlackJack
         {
             deck.shuffle();
         }
+
+        public void uitdelen(Deck deck, Hand hand)
+        {
+            Card card = deck.kaartTrekken();
+            hand.
+        }
     }
 }

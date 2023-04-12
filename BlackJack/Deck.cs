@@ -40,9 +40,11 @@ namespace BlackJack
             }
         }
 
-        public void uitdelen()
+        public Card kaartTrekken()
         {
-
+            Card card = cards[cards.Count - 1];
+            cards.Remove(card);
+            return card;
         }
 
         public List<Card> getCards()

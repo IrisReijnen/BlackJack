@@ -18,5 +18,10 @@ namespace BlackJack
         {
             cards = new List<Card>();
         }
+
+        public void addCard(Card card)
+        {
+            cards.Add(card);
+        }
     }
 }
