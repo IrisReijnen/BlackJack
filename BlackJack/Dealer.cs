@@ -23,7 +23,7 @@ namespace BlackJack
         public void uitdelen(Deck deck, Hand hand)
         {
             Card card = deck.kaartTrekken();
-            hand.
+            hand.addCard(card);
         }
     }
 }
