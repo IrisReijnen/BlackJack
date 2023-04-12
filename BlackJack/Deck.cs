@@ -25,14 +25,29 @@ namespace BlackJack
             }
         }
 
-        public void schudden()
+        public void shuffle()
         {
+            Random random = new Random();
+            int n = cards.Count;
 
+            for (int i = cards.Count - 1; i > 1; i--)
+            {
+                int rnd = random.Next(i + 1);
+
+                Card value = cards[rnd];
+                cards[rnd] = cards[i];
+                cards[i] = value;
+            }
         }
 
         public void uitdelen()
         {
 
+        }
+
+        public List<Card> getCards()
+        {
+            return cards;
         }
     }
 }

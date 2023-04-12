@@ -4,7 +4,8 @@
     {
         static void Main(string[] args)
         {
-            
+            Deck deck = new Deck();
+            deck.shuffle();
         }
     }
 }
