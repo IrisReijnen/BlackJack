@@ -13,7 +13,8 @@ namespace BlackJack
 
         public Speler()
         {
-
+            hands = new List<Hand>();
+            hands.Add(new Hand());
         }
     }
 }
