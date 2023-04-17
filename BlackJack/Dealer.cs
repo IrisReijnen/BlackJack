@@ -24,6 +24,8 @@ namespace BlackJack
         {
             Card card = deck.kaartTrekken();
             hand.addCard(card);
+            card = deck.kaartTrekken();
+            hand.addCard(card);
         }
     }
 }
