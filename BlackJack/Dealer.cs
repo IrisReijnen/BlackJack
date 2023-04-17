@@ -27,5 +27,11 @@ namespace BlackJack
             card = deck.kaartTrekken();
             hand.addCard(card);
         }
+
+        public void hit(Deck deck, Hand hand)
+        {
+            Card card = deck.kaartTrekken();
+            hand.addCard(card);
+        }
     }
 }
