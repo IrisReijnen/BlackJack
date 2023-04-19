@@ -23,5 +23,20 @@ namespace BlackJack
         {
             cards.Add(card);
         }
+
+        public void checkScore()
+        {
+            score = 0;
+            foreach (Card card in cards)
+            {
+                score += card.getValue();
+            }
+        }
+
+        
+
+        public int getScore() { return score; }
+
+        public bool getBlackjack() { return blackjack; }
     }
 }

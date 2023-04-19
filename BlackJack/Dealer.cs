@@ -33,5 +33,18 @@ namespace BlackJack
             Card card = deck.kaartTrekken();
             hand.addCard(card);
         }
+
+        public int checkScore(Hand hand)
+        {
+            hand.checkScore();
+            return hand.getScore();
+        }
+
+        
+
+        public Hand GetHand()
+        {
+            return hand;
+        }
     }
 }
