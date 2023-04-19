@@ -16,5 +16,10 @@ namespace BlackJack
             hands = new List<Hand>();
             hands.Add(new Hand());
         }
+
+        public List<Hand> GetHand()
+        {
+            return hands;
+        }
     }
 }
