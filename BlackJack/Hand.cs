@@ -32,21 +32,47 @@ namespace BlackJack
             {
                 score += card.getValue();
             }
+            foreach (Card card in cards)
+            {
+                if (card.getRank() == "ace" && score > 21)
+                {
+                    Console.WriteLine("The score is " + score + " but they have an ace. Ace changes from 11 to 1.");
+                    card.changeValue();
+                    score = 0;
+                    foreach (Card card1 in cards)
+                    {
+                        score += card1.getValue();
+                    }
+                }
+            }
+            
         }
 
-        public void checkBlackjack()
+        public bool checkBlackjack()
         {
             if (cards.Count == 2 && score == 21)
             {
                 blackjack = true;
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Wrong! It's not blackjack.");
+                return false;
             }
         }
 
-        public void checkBust()
+        public bool changeBust()
         {
             if (score > 21)
             {
                 bust = true;
+                return true;
+            } 
+            else
+            {
+                Console.WriteLine("Wrong! Score is not above 21.");
+                return false;
             }
         }
 
@@ -56,11 +82,31 @@ namespace BlackJack
             {
                 won = true;
             }
+            else
+            {
+                Console.WriteLine("Wrong! To bad.");
+            }
         }
 
         public void toStand() 
         { 
             stand = true; 
+        }
+
+        public void printCards()
+        {
+            foreach (Card card in cards)
+            {
+                if (card.getIsHidden())
+                {
+                    Console.WriteLine("? ?");
+                }
+                else
+                {
+                    Console.WriteLine(card.getSuit() + " " + card.getRank());
+                }
+                
+            }
         }
 
         public int getScore() { return score; }
@@ -72,5 +118,7 @@ namespace BlackJack
         public bool getWon() { return won; }
 
         public bool getStand() { return stand; }
+
+        public List<Card> getCards() { return cards; }
     }
 }
