@@ -20,12 +20,19 @@ namespace BlackJack
             deck.shuffle();
         }
 
-        public void uitdelen(Deck deck, Hand hand)
+        public void handout(Deck deck, Hand hand)
         {
             Card card = deck.kaartTrekken();
             hand.addCard(card);
             card = deck.kaartTrekken();
             hand.addCard(card);
+        }
+
+        public void hideCard() 
+        {
+            List<Card> cards = hand.getCards();
+            Card card = cards[0];
+            card.changeIsHidden();
         }
 
         public void hit(Deck deck, Hand hand)
@@ -45,25 +52,22 @@ namespace BlackJack
             return hand.getScore();
         }
 
-        public bool checkBlackjack(Hand hand)
+        public bool changeBlackjack(Hand hand)
         {
             hand.checkScore();
-            hand.checkBlackjack();
-            return hand.getBlackjack();
+            return hand.checkBlackjack();
         }
 
-        public bool checkBust(Hand hand)
+        public bool changeBust(Hand hand)
         {
             hand.checkScore();
-            hand.checkBust();
-            return hand.getBust();
+            return hand.changeBust();
         }
 
-        public bool checkWin(Hand hand)
+        public void changeWin(Hand hand)
         {
             hand.checkScore();
             hand.checkWon();
-            return hand.getWon();
         }
 
         public Hand GetHand() { return hand; }

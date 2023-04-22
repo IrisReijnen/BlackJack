@@ -9,7 +9,6 @@ namespace BlackJack
     internal class Speler
     {
         private List<Hand> hands;
-        //private int chips;
 
         public Speler()
         {

@@ -8,7 +8,7 @@
             Dealer dealer = new Dealer();
             List<Speler> spelers = new List<Speler>();
             
-            int aantalSpelers = 0;
+            int aantalSpelers = 1;
             for (int i = 0; i < aantalSpelers; i++)
             {
                 spelers.Add(new Speler());
@@ -16,44 +16,151 @@
 
             dealer.shuffleDeck(deck);
 
+            int spelerNr = 0;
             foreach (Speler speler in spelers)
             {
+                spelerNr++;
+                Console.WriteLine();
+                Console.WriteLine("Speler" +  spelerNr);
+
                 List<Hand> hands = speler.GetHands();
                 foreach (Hand hand in hands)
                 {
-                    dealer.uitdelen(deck, hand);
+                    dealer.handout(deck, hand);
                     hand.printCards();
-                    while (hand.getStand())
+                    Console.WriteLine();
+                    while (!hand.getStand())
                     {
                         Console.WriteLine("Do you wish to hit or stand?");
                         String action = Console.ReadLine();
                         if (action.ToLower() == "hit")
                         {
                             dealer.hit(deck, hand);
-                        } else
+                            hand.printCards();
+                        }
+                        else
                         {
                             speler.stand(hand);
                         }
 
-                        // check score
-                        Console.WriteLine("Dealer should check the score.");
-                        dealer.checkScore(hand);
+                        // Check score
+                        while (true)
+                        {
+                            Console.WriteLine("Dealer should check their score.");
+                            Console.WriteLine("Check score");
+                            action = Console.ReadLine();
+                            if (action.ToLower() == "check score")
+                            {
+                                Console.WriteLine(dealer.checkScore(hand));
+                                break;
+                            }
+                        }
+
+                        Console.WriteLine();
+                        Console.WriteLine("Blackjack");
+                        Console.WriteLine("Bust");
+                        Console.WriteLine("Nothing");
+
+                        action = Console.ReadLine();
+                        if (action.ToLower() == "bust")
+                        {
+                            if (dealer.changeBust(hand))
+                            {
+                                break;
+                            }
+
+                        }
+                        else if (action.ToLower() == "blackjack")
+                        {
+                            if (dealer.changeBlackjack(hand))
+                            {
+                                break;
+                            }
+                        }
                     }
                 }
             }
+
+            Console.WriteLine();
+            Console.WriteLine("Dealer");
+
             Hand handDealer = dealer.GetHand();
-            dealer.uitdelen(deck, handDealer);
-            while (handDealer.getStand())
+            dealer.handout(deck, handDealer);
+            handDealer.printCards();
+            while (!handDealer.getStand())
             {
                 Console.WriteLine("Do you wish to hit or stand?");
                 String action = Console.ReadLine();
                 if (action.ToLower() == "hit")
                 {
                     dealer.hit(deck, handDealer);
+                    handDealer.printCards();
+                    Console.WriteLine();
                 }
                 else
                 {
                     dealer.stand();
+                }
+
+                // Check score
+                while (true)
+                {
+                    Console.WriteLine("Dealer should check their score.");
+                    Console.WriteLine("Check score");
+                    action = Console.ReadLine();
+                    if (action.ToLower() == "check score")
+                    {
+                        Console.WriteLine(dealer.checkScore(handDealer));
+                        break;
+                    }
+                }
+
+                Console.WriteLine("Blackjack");
+                Console.WriteLine("Bust");
+                Console.WriteLine("Nothing");
+
+                action = Console.ReadLine();
+                if (action.ToLower() == "bust")
+                {
+                    if (dealer.changeBust(handDealer))
+                    {
+                        break;
+                    }
+
+                }
+                else if (action.ToLower() == "blackjack")
+                {
+                    if (dealer.changeBlackjack(handDealer))
+                    {
+                        break;
+                    }
+                }
+            }
+
+            int dealerScore = dealer.checkScore(handDealer);
+
+            spelerNr = 0;
+            foreach (Speler speler in spelers)
+            {
+                spelerNr++;
+                Console.WriteLine("Speler" + spelerNr);
+                List<Hand> hands = speler.GetHands();
+                foreach (Hand hand in hands)
+                {
+                    if (dealer.checkScore(hand) > dealerScore && !hand.getBust())
+                    {
+                        dealer.changeWin(hand);
+                        Console.WriteLine("You have Won");
+                    } 
+                    else if (hand.getBlackjack() && !handDealer.getBlackjack())
+                    {
+                        dealer.changeWin(hand);
+                        Console.WriteLine("You have Won");
+                    }
+                    else
+                    {
+                        Console.WriteLine("You have Lost");
+                    }
                 }
             }
         }
