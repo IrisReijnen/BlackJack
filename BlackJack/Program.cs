@@ -22,7 +22,7 @@
                 foreach (Hand hand in hands)
                 {
                     dealer.uitdelen(deck, hand);
-                    // print
+                    hand.printCards();
                     while (hand.getStand())
                     {
                         Console.WriteLine("Do you wish to hit or stand?");
