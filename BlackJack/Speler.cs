@@ -22,6 +22,6 @@ namespace BlackJack
             hand.toStand();
         }
 
-        public List<Hand> GetHand() { return hands; }
+        public List<Hand> GetHands() { return hands; }
     }
 }

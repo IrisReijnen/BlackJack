@@ -63,6 +63,14 @@ namespace BlackJack
             stand = true; 
         }
 
+        public void printCards()
+        {
+            foreach (Card card in cards)
+            {
+                Console.WriteLine(card.getSuit() + " " + card.getRank());
+            }
+        }
+
         public int getScore() { return score; }
 
         public bool getBlackjack() { return blackjack; }
