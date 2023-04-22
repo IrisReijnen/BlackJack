@@ -7,8 +7,24 @@
             Deck deck = new Deck();
             Dealer dealer = new Dealer();
             List<Speler> spelers = new List<Speler>();
+
             
-            int aantalSpelers = 1;
+            int aantalSpelers;
+            while (true)
+            {
+                Console.WriteLine("How many players? 1-4");
+                String number = Console.ReadLine();
+                if (number == "1" || number == "2" || number == "3" || number == "4")
+                {
+                    aantalSpelers = Convert.ToInt32(Console.ReadLine());
+                    break;
+                } 
+                else
+                {
+                    Console.WriteLine("1-4");
+                }
+            }
+            
             for (int i = 0; i < aantalSpelers; i++)
             {
                 spelers.Add(new Speler());
