@@ -16,7 +16,7 @@
                 String number = Console.ReadLine();
                 if (number == "1" || number == "2" || number == "3" || number == "4")
                 {
-                    aantalSpelers = Convert.ToInt32(Console.ReadLine());
+                    aantalSpelers = Convert.ToInt32(number);
                     break;
                 } 
                 else
@@ -102,6 +102,7 @@
 
             Hand handDealer = dealer.GetHand();
             dealer.handout(deck, handDealer);
+            dealer.hideCard();
             handDealer.printCards();
             while (!handDealer.getStand())
             {
@@ -163,7 +164,12 @@
                 List<Hand> hands = speler.GetHands();
                 foreach (Hand hand in hands)
                 {
-                    if (dealer.checkScore(hand) > dealerScore && !hand.getBust())
+                    if (handDealer.getBust() && !hand.getBust())
+                    {
+                        dealer.changeWin(hand);
+                        Console.WriteLine("You have Won");
+                    }
+                    else if (dealer.checkScore(hand) > dealerScore && !hand.getBust())
                     {
                         dealer.changeWin(hand);
                         Console.WriteLine("You have Won");
