@@ -15,7 +15,7 @@ namespace BlackJack
             hand = new Hand();
         }
 
-        public void shuffle(Deck deck)
+        public void shuffleDeck(Deck deck)
         {
             deck.shuffle();
         }
@@ -34,17 +34,38 @@ namespace BlackJack
             hand.addCard(card);
         }
 
+        public void stand()
+        {
+            hand.toStand();
+        }
+
         public int checkScore(Hand hand)
         {
             hand.checkScore();
             return hand.getScore();
         }
 
-        
-
-        public Hand GetHand()
+        public bool checkBlackjack(Hand hand)
         {
-            return hand;
+            hand.checkScore();
+            hand.checkBlackjack();
+            return hand.getBlackjack();
         }
+
+        public bool checkBust(Hand hand)
+        {
+            hand.checkScore();
+            hand.checkBust();
+            return hand.getBust();
+        }
+
+        public bool checkWin(Hand hand)
+        {
+            hand.checkScore();
+            hand.checkWon();
+            return hand.getWon();
+        }
+
+        public Hand GetHand() { return hand; }
     }
 }
