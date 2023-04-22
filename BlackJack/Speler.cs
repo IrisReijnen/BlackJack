@@ -17,9 +17,11 @@ namespace BlackJack
             hands.Add(new Hand());
         }
 
-        public List<Hand> GetHand()
+        public void stand(Hand hand)
         {
-            return hands;
+            hand.toStand();
         }
+
+        public List<Hand> GetHand() { return hands; }
     }
 }

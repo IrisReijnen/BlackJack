@@ -47,9 +47,6 @@ namespace BlackJack
             return card;
         }
 
-        public List<Card> getCards()
-        {
-            return cards;
-        }
+        public List<Card> getCards() { return cards; }
     }
 }

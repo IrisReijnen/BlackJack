@@ -11,7 +11,7 @@ namespace BlackJack
         private string rank;
         private string suit;
         private int value;
-        private bool isOpen = true;
+        private bool isHidden = false;
 
         public Card(string rank, string suit) 
         {
@@ -63,21 +63,21 @@ namespace BlackJack
             }
         }
 
-        public void changeIsOpen()
+        public void changeIsHidden()
         {
-            if (isOpen)
+            if (isHidden)
             {
-                isOpen = false;
+                isHidden = false;
             } 
             else
             {
-                isOpen = true;
+                isHidden = true;
             }
         }
 
         public string getRank() { return rank; }
         public string getSuit() {  return suit; }
         public int getValue() { return value; }
-        public bool getIsOpen() { return isOpen; }
+        public bool getIsHidden() { return isHidden; }
     }
 }
